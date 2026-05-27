@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subash Chandra Bose — Android Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-bracket">[</span>SCB<span class="logo-bracket">]</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link">_home</a></li>
+      <li><a href="#about" class="nav-link">_about</a></li>
+      <li><a href="#skills" class="nav-link">_skills</a></li>
+      <li><a href="#projects" class="nav-link">_projects</a></li>
+      <li><a href="#contact" class="nav-link">_contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-tag reveal">
+        <span class="tag-dot"></span> Available for opportunities
+      </div>
+      <h1 class="hero-name reveal">
+        <span class="name-line">Subash</span>
+        <span class="name-line accent-text">Chandra Bose</span>
+        <span class="name-line">Thangarasu</span>
+      </h1>
+      <p class="hero-role reveal">
+        <span class="role-prefix">~/</span>
+        <span class="role-typed" id="typedRole"></span>
+        <span class="cursor-blink">▋</span>
+      </p>
+      <p class="hero-desc reveal">
+        Building high-performance Android experiences with clean architecture, AI integration, and a pixel-perfect eye for detail.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-socials reveal">
+        <a href="https://github.com/Subash812202" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/subash-chandra-bose-thangarasu-a872002a5/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://leetcode.com/u/SUBASH_143/" target="_blank" rel="noopener" class="social-icon" aria-label="LeetCode">
+          <i class="fas fa-code"></i>
+        </a>
+        <a href="mailto:subash948682@gmail.com" class="social-icon" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hex-ring ring-1"></div>
+      <div class="hex-ring ring-2"></div>
+      <div class="hex-ring ring-3"></div>
+      <div class="avatar-container">
+        <div class="avatar-inner">
+          <span class="avatar-initials">SCB</span>
+        </div>
+        <div class="avatar-orbit">
+          <div class="orbit-dot"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="about-lead">
+            I'm an <strong>Android Developer</strong> passionate about crafting apps that solve real-world problems with elegant, maintainable code.
+          </p>
+          <p>
+            My journey spans native Android development using Java and Kotlin, with a growing interest in AI-powered mobile applications. I believe great software lives at the intersection of solid engineering and thoughtful user experience.
+          </p>
+          <p>
+            When I'm not building apps, I'm sharpening my problem-solving skills on LeetCode and contributing to open-source on GitHub.
+          </p>
+          <div class="about-stats">
+            <div class="stat-card">
+              <span class="stat-num">2+</span>
+              <span class="stat-label">Years Coding</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">5+</span>
+              <span class="stat-label">Skills</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">AI</span>
+              <span class="stat-label">Integrated</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-code reveal">
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="code-filename">Developer.kt</span>
+            </div>
+            <pre class="code-body"><code><span class="kw">data class</span> <span class="cls">Developer</span>(
+  <span class="kw">val</span> name: <span class="cls">String</span> = <span class="str">"Subash Chandra Bose"</span>,
+  <span class="kw">val</span> role: <span class="cls">String</span> = <span class="str">"Android Developer"</span>,
+  <span class="kw">val</span> skills: <span class="cls">List</span>&lt;<span class="cls">String</span>&gt; = listOf(
+    <span class="str">"Kotlin"</span>, <span class="str">"Java"</span>,
+    <span class="str">"Android SDK"</span>,
+    <span class="str">"HTML"</span>, <span class="str">"CSS"</span>
+  ),
+  <span class="kw">val</span> passion: <span class="cls">String</span> = <span class="str">"Building AI apps"</span>,
+  <span class="kw">val</span> openToWork: <span class="cls">Boolean</span> = <span class="kw">true</span>
+)
+
+<span class="kw">fun</span> <span class="fn">main</span>() {
+  <span class="kw">val</span> me = <span class="cls">Developer</span>()
+  println(<span class="str">"Hello, World! 👋"</span>)
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills section" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal" data-delay="0">
+          <div class="skill-icon-wrap">
+            <i class="fab fa-java"></i>
+          </div>
+          <h3 class="skill-name">Java</h3>
+          <p class="skill-desc">Core OOP, data structures, multithreading, and Android backend logic.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+
+        <div class="skill-card reveal" data-delay="100">
+          <div class="skill-icon-wrap">
+            <i class="fas fa-k"></i>
+          </div>
+          <h3 class="skill-name">Kotlin</h3>
+          <p class="skill-desc">Modern Android development, coroutines, extension functions, and null safety.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+
+        <div class="skill-card reveal" data-delay="200">
+          <div class="skill-icon-wrap">
+            <i class="fab fa-android"></i>
+          </div>
+          <h3 class="skill-name">Android</h3>
+          <p class="skill-desc">Jetpack, MVVM, REST APIs, Camera APIs, and Material Design components.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+        </div>
+
+        <div class="skill-card reveal" data-delay="300">
+          <div class="skill-icon-wrap">
+            <i class="fab fa-html5"></i>
+          </div>
+          <h3 class="skill-name">HTML</h3>
+          <p class="skill-desc">Semantic markup, accessibility standards, and responsive structure.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+        </div>
+
+        <div class="skill-card reveal" data-delay="400">
+          <div class="skill-icon-wrap">
+            <i class="fab fa-css3-alt"></i>
+          </div>
+          <h3 class="skill-name">CSS</h3>
+          <p class="skill-desc">Flexbox, Grid, animations, responsive design, and modern layouts.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+        </div>
+
+        <div class="skill-card reveal" data-delay="500">
+          <div class="skill-icon-wrap">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="skill-name">AI Integration</h3>
+          <p class="skill-desc">TensorFlow Lite, ML Kit, and on-device inference for Android apps.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="68"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card featured reveal">
+          <div class="project-badge">Featured</div>
+          <div class="project-top">
+            <div class="project-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Subash812202" target="_blank" rel="noopener" aria-label="GitHub" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="project-link" aria-label="Live Demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Rice Disease Detection App</h3>
+          <p class="project-desc">
+            An AI-powered Android application that analyzes images of rice crops to detect diseases in real time. Uses on-device machine learning to identify conditions like Blast, Blight, and Tungro — helping farmers take swift action without internet connectivity.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">TensorFlow Lite</span>
+            <span class="tag">CameraX</span>
+            <span class="tag">ML Kit</span>
+            <span class="tag">Android</span>
+          </div>
+          <div class="project-highlights">
+            <div class="highlight"><i class="fas fa-check-circle"></i> Offline AI inference</div>
+            <div class="highlight"><i class="fas fa-check-circle"></i> Real-time camera scanning</div>
+            <div class="highlight"><i class="fas fa-check-circle"></i> Multi-disease classification</div>
+          </div>
+        </div>
+
+        <!-- Placeholder second project card -->
+        <div class="project-card reveal">
+          <div class="project-top">
+            <div class="project-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Subash812202" target="_blank" rel="noopener" aria-label="GitHub" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">More Projects on GitHub</h3>
+          <p class="project-desc">
+            Explore more of my Android and web development projects on GitHub. From utility apps to experimental prototypes — always building, always learning.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Android</span>
+          </div>
+          <a href="https://github.com/Subash812202" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">View GitHub →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-text reveal">
+          <h3 class="contact-heading">Let's build something great together.</h3>
+          <p>
+            I'm actively looking for new opportunities — whether it's a full-time role, internship, or exciting freelance project. My inbox is always open. Drop a message and I'll get back to you!
+          </p>
+          <div class="contact-links">
+            <a href="mailto:subash948682@gmail.com" class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">Email</span>
+                <span class="contact-val">subash948682@gmail.com</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/subash-chandra-bose-thangarasu-a872002a5/" target="_blank" rel="noopener" class="contact-item">
+              <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-val">subash-chandra-bose-thangarasu</span>
+              </div>
+            </a>
+            <a href="https://github.com/Subash812202" target="_blank" rel="noopener" class="contact-item">
+              <div class="contact-icon"><i class="fab fa-github"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-val">Subash812202</span>
+              </div>
+            </a>
+            <a href="https://leetcode.com/u/SUBASH_143/" target="_blank" rel="noopener" class="contact-item">
+              <div class="contact-icon"><i class="fas fa-code"></i></div>
+              <div class="contact-info">
+                <span class="contact-label">LeetCode</span>
+                <span class="contact-val">SUBASH_143</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div class="form-note">* This form opens your email client with the message pre-filled.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <span class="logo-bracket">[</span>SCB<span class="logo-bracket">]</span>
+          </div>
+          <p class="footer-tagline">Building apps that matter.</p>
+        </div>
+        <div class="footer-socials">
+          <a href="https://github.com/Subash812202" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/subash-chandra-bose-thangarasu-a872002a5/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://leetcode.com/u/SUBASH_143/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+          <a href="mailto:subash948682@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Designed &amp; Built by <strong>Subash Chandra Bose Thangarasu</strong></p>
+        <p class="footer-copy">&copy; <span id="year"></span> — All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
