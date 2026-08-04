@@ -42,7 +42,7 @@ if (hamburger && navLinksContainer) {
 }
 
 // ── Typewriter ──
-const roles = ['Developer', 'ML Engineer', 'Android Developer', 'UI/Graphic Designer'];
+const roles = ['UI/UX Designer', 'Visual Designer', 'Product Designer', 'Front-End Developer'];
 let ri = 0, ci = 0, deleting = false;
 const typedRoleEl = document.getElementById('typedRole');
 function type() {
