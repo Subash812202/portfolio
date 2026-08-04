@@ -1,209 +1,139 @@
+// ── Cursor ──
 const cursor = document.getElementById('cursor');
 const cursorDot = document.getElementById('cursorDot');
-const hoverTargets = document.querySelectorAll('a, button, .btn, .project-link, .nav-link');
+document.addEventListener('mousemove', (e) => {
+  if (cursor) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; }
+  if (cursorDot) { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; }
+});
+
+// ── Navbar scroll + active link ──
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
-const hamburger = document.getElementById('hamburger');
-const navLinksContainer = document.getElementById('navLinks');
-const typedRole = document.getElementById('typedRole');
-const skillFills = document.querySelectorAll('.skill-fill');
-const contactForm = document.getElementById('contactForm');
-const yearSpan = document.getElementById('year');
-
-const roles = [
-  'Android Developer',
-  'Mobile AI Enthusiast',
-  'Kotlin Engineer',
-  'App Problem Solver'
-];
-
-let currentRole = 0;
-let currentChar = 0;
-let isDeleting = false;
-let typeTimeout;
-
-function updateCursorPosition(event) {
-  const { clientX, clientY } = event;
-  if (cursor) {
-    cursor.style.left = `${clientX}px`;
-    cursor.style.top = `${clientY}px`;
-  }
-  if (cursorDot) {
-    cursorDot.style.left = `${clientX}px`;
-    cursorDot.style.top = `${clientY}px`;
-  }
-}
-
-function toggleCursorHover(state) {
-  if (!cursor) return;
-  cursor.classList.toggle('hovering', state);
-}
-
-function bindCursorHover() {
-  hoverTargets.forEach((target) => {
-    target.addEventListener('mouseenter', () => toggleCursorHover(true));
-    target.addEventListener('mouseleave', () => toggleCursorHover(false));
-  });
-}
 
 function handleScroll() {
-  if (!navbar) return;
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-}
+  if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 40);
 
-function setActiveNav() {
   const sections = document.querySelectorAll('section[id]');
   let activeId = '';
-
   sections.forEach((section) => {
     const rect = section.getBoundingClientRect();
     if (rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3) {
       activeId = section.id;
     }
   });
-
   navLinks.forEach((link) => {
-    const isActive = link.getAttribute('href') === `#${activeId}`;
-    link.classList.toggle('active', isActive);
+    link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
   });
 }
+window.addEventListener('scroll', handleScroll);
 
-function handleNavLinkClick(event) {
-  const link = event.currentTarget;
-  if (!link) return;
-  if (navLinksContainer && navLinksContainer.classList.contains('open')) {
+// ── Hamburger ──
+const hamburger = document.getElementById('hamburger');
+const navLinksContainer = document.getElementById('navLinks');
+if (hamburger && navLinksContainer) {
+  hamburger.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  });
+  navLinks.forEach((link) => link.addEventListener('click', () => {
     navLinksContainer.classList.remove('open');
-    if (hamburger) hamburger.classList.remove('open');
-  }
+    hamburger.classList.remove('open');
+  }));
 }
 
-function bindNavLinks() {
-  navLinks.forEach((link) => {
-    link.addEventListener('click', handleNavLinkClick);
-  });
-}
-
-function toggleMenu() {
-  if (!navLinksContainer || !hamburger) return;
-  navLinksContainer.classList.toggle('open');
-  hamburger.classList.toggle('open');
-}
-
-function revealOnScroll() {
-  const revealElements = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  revealElements.forEach((element) => observer.observe(element));
-}
-
-function animateSkills() {
-  const skillsSection = document.querySelector('.skills');
-  if (!skillsSection || !skillFills.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        skillFills.forEach((fill) => {
-          const width = fill.dataset.width || '0';
-          fill.style.width = `${width}%`;
-        });
-        obs.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.25 }
-  );
-
-  observer.observe(skillsSection);
-}
-
-function typeRoleText() {
-  const currentText = roles[currentRole];
-  if (!typedRole) return;
-
-  if (!isDeleting) {
-    typedRole.textContent = currentText.slice(0, currentChar + 1);
-    currentChar += 1;
-
-    if (currentChar === currentText.length) {
-      isDeleting = true;
-      typeTimeout = setTimeout(typeRoleText, 1800);
-      return;
-    }
+// ── Typewriter ──
+const roles = ['Developer', 'ML Engineer', 'Android Developer', 'UI/Graphic Designer'];
+let ri = 0, ci = 0, deleting = false;
+const typedRoleEl = document.getElementById('typedRole');
+function type() {
+  if (!typedRoleEl) return;
+  const word = roles[ri];
+  if (!deleting) {
+    typedRoleEl.textContent = word.slice(0, ++ci);
+    if (ci === word.length) { deleting = true; setTimeout(type, 1600); return; }
   } else {
-    typedRole.textContent = currentText.slice(0, currentChar - 1);
-    currentChar -= 1;
-
-    if (currentChar === 0) {
-      isDeleting = false;
-      currentRole = (currentRole + 1) % roles.length;
-    }
+    typedRoleEl.textContent = word.slice(0, --ci);
+    if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
   }
-
-  const delay = isDeleting ? 60 : 120;
-  typeTimeout = setTimeout(typeRoleText, delay);
+  setTimeout(type, deleting ? 60 : 100);
 }
+type();
 
-function setupContactForm() {
-  if (!contactForm) return;
-
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const name = document.getElementById('name')?.value.trim();
-    const email = document.getElementById('email')?.value.trim();
-    const message = document.getElementById('message')?.value.trim();
-
-    if (!name || !email || !message) {
-      return;
+// ── Reveal on scroll ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      revealObserver.unobserve(entry.target);
     }
-
-    const subject = encodeURIComponent(`Hello from ${name}`);
-    const body = encodeURIComponent(`${message}\n\nName: ${name}\nEmail: ${email}`);
-    window.location.href = `mailto:subash948682@gmail.com?subject=${subject}&body=${body}`;
   });
-}
+}, { threshold: 0.12 });
+reveals.forEach((r) => revealObserver.observe(r));
 
-function setCurrentYear() {
-  if (!yearSpan) return;
-  yearSpan.textContent = new Date().getFullYear();
-}
-
-function init() {
-  document.documentElement.classList.add('custom-cursor-enabled');
-  document.addEventListener('mousemove', updateCursorPosition);
-  document.addEventListener('scroll', () => {
-    handleScroll();
-    setActiveNav();
+// ── Skill bars animate when visible ──
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-fill').forEach((bar) => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+      barObserver.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.2 });
+document.querySelectorAll('.skill-category').forEach((c) => barObserver.observe(c));
 
-  bindCursorHover();
-  bindNavLinks();
-  revealOnScroll();
-  animateSkills();
-  setupContactForm();
-  setCurrentYear();
-  typeRoleText();
+// ── Year ──
+const yearSpan = document.getElementById('year');
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  if (hamburger) {
-    hamburger.addEventListener('click', toggleMenu);
-  }
-
-  handleScroll();
-  setActiveNav();
+// ── Contact form: submit to Netlify Forms via fetch, fall back to mailto ──
+function encodeFormData(form) {
+  return new URLSearchParams(new FormData(form)).toString();
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const name = document.getElementById('senderName')?.value.trim() || '';
+    const email = document.getElementById('senderEmail')?.value.trim() || '';
+    const opp = document.getElementById('oppType')?.value || '';
+    const message = document.getElementById('message')?.value.trim() || '';
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(contactForm),
+    })
+      .then(() => {
+        if (formNote) {
+          formNote.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+          formNote.classList.add('success');
+        }
+        contactForm.reset();
+      })
+      .catch(() => {
+        // Fallback: open the user's email client with the message pre-filled
+        const subject = encodeURIComponent((opp || 'Opportunity') + ' — via SCB Portfolio');
+        const body = encodeURIComponent(
+          'Hi Subash,\n\n' + message + '\n\n—\n' + name + '\n' + email + (opp ? '\nOpportunity: ' + opp : '')
+        );
+        window.location.href = 'mailto:subash948682@gmail.com?subject=' + subject + '&body=' + body;
+        if (formNote) {
+          formNote.textContent = 'Opening your email client instead...';
+          formNote.classList.add('error');
+        }
+      })
+      .finally(() => {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message'; }
+      });
+  });
 }
